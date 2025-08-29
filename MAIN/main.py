@@ -1,53 +1,64 @@
 import os
+import logging
+import json
+import asyncio
+import base64
+import re
+from datetime import datetime
 from pathlib import Path
-from fastapi import FastAPI, Request
-from fastapi.responses import HTMLResponse
+
+from fastapi import FastAPI, Request, WebSocket, WebSocketDisconnect
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+from typing import List
 
+import websockets
+import assemblyai as aai
+from assemblyai.streaming.v3 import (
+    BeginEvent,
+    StreamingClient,
+    StreamingClientOptions,
+    StreamingError,
+    StreamingEvents,
+    StreamingParameters,
+    TerminationEvent,
+    TurnEvent,
+)
+import google.generativeai as genai
+
+# ---------------------------
+# Logging setup
+# ---------------------------
+logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
+
+# ---------------------------
+# FastAPI app
+# ---------------------------
 app = FastAPI()
 
-app = FastAPI()
-
-BASE_DIR = Path(__file__).parent
-TEMPLATE_DIR = BASE_DIR / "templates"
+# ---------------------------
+# Paths
+# ---------------------------
+BASE_DIR = Path(__file__).resolve().parent
+TEMPLATES_DIR = BASE_DIR / "templates"
 STATIC_DIR = BASE_DIR / "static"
 
-print(">>> BASE_DIR:", BASE_DIR)
-print(">>> TEMPLATE_DIR:", TEMPLATE_DIR)
-print(">>> STATIC_DIR:", STATIC_DIR)
+# ---------------------------
+# Mount Static + Templates
+# ---------------------------
+app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
+templates = Jinja2Templates(directory=str(TEMPLATES_DIR))
 
-@app.get("/debug")
-async def debug():
-    return {
-        "BASE_DIR": str(BASE_DIR),
-        "TEMPLATE_DIR": str(TEMPLATE_DIR),
-        "STATIC_DIR": str(STATIC_DIR),
-        "files_in_BASE_DIR": os.listdir(BASE_DIR),
-    }
-
-app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
-templates = Jinja2Templates(directory=TEMPLATE_DIR)
-
-@app.get("/", response_class=HTMLResponse)
+# ---------------------------
+# Example route (root page)
+# ---------------------------
+@app.get("/")
 async def home(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
-
-# Mount static + templates
-app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
-templates = Jinja2Templates(directory=str(TEMPLATE_DIR))
-
-# Logging
-logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
-
-# FastAPI App
-app = FastAPI()
-
-# Directories
-BASE_DIR = Path(__file__).resolve().parent
-app.mount("/static", StaticFiles(directory=str(BASE_DIR / "static")), name="static")
-templates = Jinja2Templates(directory=str(BASE_DIR / "templates"))
+# ---------------------------
+# Your WebSocket / API code continues below
+# ---------------------------
 
 # REMOVED: Global Gemini model initialization and dotenv loading
 
@@ -321,6 +332,7 @@ async def websocket_audio_streaming(websocket: WebSocket):
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("MAIN.main:app", host="0.0.0.0", port=8000, reload=True)
+
 
 
 
