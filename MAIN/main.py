@@ -1,32 +1,27 @@
 import os
-import logging
+from pathlib import Path
 from fastapi import FastAPI, Request
+from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from pathlib import Path as PathLib
-from fastapi import FastAPI, Request
-# AssemblyAI & Google imports
-import assemblyai as aai
-from assemblyai.streaming.v3 import (
-    BeginEvent,
-    StreamingClient,
-    StreamingClientOptions,
-    StreamingError,
-    StreamingEvents,
-    StreamingParameters,
-    TerminationEvent,
-    TurnEvent,
-)
-import google.generativeai as genai
-
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 app = FastAPI()
 
-# --- Paths ---
-BASE_DIR = PathLib(__file__).resolve().parent
-TEMPLATE_DIR = BASE_DIR / "templates"
-STATIC_DIR = BASE_DIR / "static"
+# Forcefully point to MAIN/
+BASE_DIR = Path(__file__).parent
+TEMPLATE_DIR = os.path.join(BASE_DIR, "templates")
+STATIC_DIR = os.path.join(BASE_DIR, "static")
+
+print("TEMPLATE_DIR >>>", TEMPLATE_DIR)  # debug
+print("STATIC_DIR >>>", STATIC_DIR)
+
+app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
+templates = Jinja2Templates(directory=TEMPLATE_DIR)
+
+@app.get("/", response_class=HTMLResponse)
+async def home(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request})
+
 
 # Mount static + templates
 app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
@@ -315,6 +310,7 @@ async def websocket_audio_streaming(websocket: WebSocket):
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("MAIN.main:app", host="0.0.0.0", port=8000, reload=True)
+
 
 
 
