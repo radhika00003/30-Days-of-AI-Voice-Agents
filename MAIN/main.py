@@ -10,6 +10,7 @@ from typing import List
 import base64
 import websockets
 from datetime import datetime
+from fastapi import Request
 import re
 
 import assemblyai as aai
@@ -310,6 +311,7 @@ async def websocket_audio_streaming(websocket: WebSocket):
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("MAIN.main:app", host="0.0.0.0", port=8000, reload=True)
+
 
 
 
