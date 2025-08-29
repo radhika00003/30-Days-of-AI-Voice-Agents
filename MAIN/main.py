@@ -24,7 +24,8 @@ from assemblyai.streaming.v3 import (
     TurnEvent,
 )
 import google.generativeai as genai
-
+from pathlib import Path as PathLib
+from fastapi.templating import Jinja2Templates
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 app = FastAPI()
 
@@ -304,6 +305,7 @@ async def websocket_audio_streaming(websocket: WebSocket):
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("MAIN.main:app", host="0.0.0.0", port=8000, reload=True)
+
 
 
 
