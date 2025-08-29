@@ -7,13 +7,24 @@ from fastapi.templating import Jinja2Templates
 
 app = FastAPI()
 
-# Forcefully point to MAIN/
-BASE_DIR = Path(__file__).parent
-TEMPLATE_DIR = os.path.join(BASE_DIR, "templates")
-STATIC_DIR = os.path.join(BASE_DIR, "static")
+app = FastAPI()
 
-print("TEMPLATE_DIR >>>", TEMPLATE_DIR)  # debug
-print("STATIC_DIR >>>", STATIC_DIR)
+BASE_DIR = Path(__file__).parent
+TEMPLATE_DIR = BASE_DIR / "templates"
+STATIC_DIR = BASE_DIR / "static"
+
+print(">>> BASE_DIR:", BASE_DIR)
+print(">>> TEMPLATE_DIR:", TEMPLATE_DIR)
+print(">>> STATIC_DIR:", STATIC_DIR)
+
+@app.get("/debug")
+async def debug():
+    return {
+        "BASE_DIR": str(BASE_DIR),
+        "TEMPLATE_DIR": str(TEMPLATE_DIR),
+        "STATIC_DIR": str(STATIC_DIR),
+        "files_in_BASE_DIR": os.listdir(BASE_DIR),
+    }
 
 app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 templates = Jinja2Templates(directory=TEMPLATE_DIR)
@@ -310,6 +321,7 @@ async def websocket_audio_streaming(websocket: WebSocket):
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("MAIN.main:app", host="0.0.0.0", port=8000, reload=True)
+
 
 
 
