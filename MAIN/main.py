@@ -1,18 +1,11 @@
 import os
 import logging
-from fastapi import FastAPI, Request, WebSocket, WebSocketDisconnect
+from fastapi import FastAPI, Request
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from pathlib import Path
+from pathlib import Path as PathLib
 
-import json
-import asyncio
-from typing import Type, List
-import base64
-import websockets
-from datetime import datetime
-import re
-
+# AssemblyAI & Google imports
 import assemblyai as aai
 from assemblyai.streaming.v3 import (
     BeginEvent,
@@ -26,12 +19,18 @@ from assemblyai.streaming.v3 import (
 )
 import google.generativeai as genai
 
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-@app.get("/debug-templates")
-async def debug_templates():
-    files = os.listdir(BASE_DIR / "templates")
-    return {"found_files": files}
+app = FastAPI()
 
+# --- Paths ---
+BASE_DIR = PathLib(__file__).resolve().parent
+TEMPLATE_DIR = BASE_DIR / "templates"
+STATIC_DIR = BASE_DIR / "static"
+
+# Mount static + templates
+app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
+templates = Jinja2Templates(directory=str(TEMPLATE_DIR))
 
 # Logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
@@ -316,6 +315,7 @@ async def websocket_audio_streaming(websocket: WebSocket):
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("MAIN.main:app", host="0.0.0.0", port=8000, reload=True)
+
 
 
 
