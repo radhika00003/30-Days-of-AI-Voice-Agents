@@ -3,7 +3,8 @@ import logging
 from fastapi import FastAPI, Request, WebSocket, WebSocketDisconnect
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from pathlib import Path as PathLib
+from pathlib import Path
+
 import json
 import asyncio
 from typing import Type, List
@@ -24,14 +25,17 @@ from assemblyai.streaming.v3 import (
     TurnEvent,
 )
 import google.generativeai as genai
-from pathlib import Path as PathLib
-from fastapi.templating import Jinja2Templates
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
+# Logging
+logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
+
+# FastAPI App
 app = FastAPI()
 
-BASE_DIR = PathLib(__file__).resolve().parent
-app.mount("/static", StaticFiles(directory=BASE_DIR / "static"), name="static")
-templates = Jinja2Templates(directory=BASE_DIR / "templates")
+# Directories
+BASE_DIR = Path(__file__).resolve().parent
+app.mount("/static", StaticFiles(directory=str(BASE_DIR / "static")), name="static")
+templates = Jinja2Templates(directory=str(BASE_DIR / "templates"))
 
 # REMOVED: Global Gemini model initialization and dotenv loading
 
@@ -305,6 +309,7 @@ async def websocket_audio_streaming(websocket: WebSocket):
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("MAIN.main:app", host="0.0.0.0", port=8000, reload=True)
+
 
 
 
