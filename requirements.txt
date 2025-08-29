@@ -1,0 +1,10 @@
+﻿fastapi
+uvicorn[standard]
+websockets
+python-dotenv
+requests
+# Add your specific STT and LLM SDKs
+assemblyai 
+google-generativeai
+jinja2
+python-multipart

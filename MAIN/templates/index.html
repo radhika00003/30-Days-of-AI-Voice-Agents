@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vaani AI</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #e0f7fa, #fdfcfb);
+      color: #1f2937;
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.6); }
+      70% { box-shadow: 0 0 0 20px rgba(56, 189, 248, 0); }
+    }
+    .recording { animation: pulse 1.5s infinite; }
+
+    .chat-message {
+      padding: 2px 0;
+      margin-bottom: 8px;
+      max-width: 100%;
+      word-wrap: break-word;
+      font-size: 1.125rem;
+    }
+    .user-prefix {
+      font-weight: 700;
+      color: #38bdf8;
+      margin-right: 8px;
+    }
+    .ai-prefix {
+      font-weight: 700;
+      color: #34d399;
+      margin-right: 8px;
+    }
+    .message-content { color: #374151; }
+
+    #chatContainer::-webkit-scrollbar { width: 6px; }
+    #chatContainer::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.05); border-radius: 10px; }
+    #chatContainer::-webkit-scrollbar-thumb { background-color: #a5f3fc; border-radius: 10px; }
+    #chatContainer::-webkit-scrollbar-thumb:hover { background-color: #38bdf8; }
+    #chatContainer { scrollbar-width: thin; scrollbar-color: #38bdf8 rgba(0, 0, 0, 0.05); }
+
+    .modal-backdrop {
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 50;
+    }
+    .modal-content {
+      z-index: 51;
+    }
+  </style>
+</head>
+<body class="text-gray-800 font-sans">
+  <div class="container mx-auto flex flex-col justify-center items-center min-h-screen p-4">
+    <div class="absolute top-4 right-4">
+      <button id="settingsBtn" class="p-2 rounded-full bg-cyan-100 text-cyan-600 hover:bg-cyan-200 transition">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-gear-fill" viewBox="0 0 16 16">
+          <path d="M9.405 1.05c-.61-.392-1.285-.59-2-.59-.715 0-1.39.198-2 .59-.387.248-.68.618-.89 1.05A.825.825 0 0 0 4.9 2.5a.825.825 0 0 0-.816.59C3.882 3.65 3.36 4.6 3 5.4a.5.5 0 0 0-.2.4.5.5 0 0 0 .2.4c.36.8.882 1.75 1.084 2.16a.825.825 0 0 0 .816.59.825.825 0 0 0 .816-.59c.202-.41.724-1.36 1.084-2.16.2-.4.493-.75.88-1.05.61-.392 1.285-.59 2-.59.715 0 1.39.198 2 .59.387.248.68.618.89 1.05a.825.825 0 0 0 .816.59.825.825 0 0 0 .816-.59c.202-.41.724-1.36 1.084-2.16a.5.5 0 0 0 .2-.4.5.5 0 0 0-.2-.4c-.36-.8-.882-1.75-1.084-2.16a.825.825 0 0 0-.816-.59.825.825 0 0 0-.816.59c-.202.41-.724 1.36-1.084 2.16zM8 12.5a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="w-full max-w-2xl bg-white/40 backdrop-blur-xl rounded-2xl shadow-xl p-6 sm:p-8 text-center space-y-6 border border-cyan-200">
+      <div class="space-y-2">
+        <h1 class="text-3xl font-bold text-gray-800">Vaani AI ✨🎤</h1>
+        <p class="text-gray-600">Your calm voice companion. Speak, listen, connect.</p>
+      </div>
+
+      <div class="flex justify-center py-4">
+        <button id="recordBtn"
+          class="w-24 h-24 rounded-full bg-cyan-500 text-white flex items-center justify-center hover:bg-cyan-600 focus:outline-none focus:ring-4 focus:ring-cyan-300">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-mic-fill" viewBox="0 0 16 16">
+            <path d="M5 3a3 3 0 0 1 6 0v5a3 3 0 0 1-6 0V3z"/>
+            <path d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5z"/>
+          </svg>
+        </button>
+      </div>
+
+      <div id="statusDisplay" class="text-lg text-gray-700 h-8">Ready</div>
+
+      <div id="chatDisplay" class="bg-white/50 rounded-lg p-4 min-h-[15rem] hidden text-left shadow-inner">
+        <div id="chatContainer" class="h-full max-h-64 overflow-y-auto text-gray-800"></div>
+      </div>
+
+      <div id="clearBtnContainer" class="pt-4 hidden">
+        <button id="clearBtn"
+          class="py-2 px-5 border border-cyan-400 text-cyan-600 rounded-lg hover:bg-cyan-100 hover:text-cyan-800 transition">
+          Clear Chat
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="settingsModal" class="fixed inset-0 hidden items-center justify-center p-4 modal-backdrop">
+    <div class="bg-white p-6 rounded-lg shadow-xl w-full max-w-md modal-content">
+      <h2 class="text-2xl font-bold mb-4">API Key Settings</h2>
+      <p class="text-sm text-gray-600 mb-4">Enter your API keys to use the service. These are stored locally in your browser and are never sent to a server.</p>
+      <div class="space-y-4">
+        <div>
+          <label for="openaiKey" class="block text-sm font-medium text-gray-700">Gemini API Key</label>
+          <input type="password" id="openaiKey" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-cyan-500 focus:ring-cyan-500 sm:text-sm p-2" placeholder="sk-..." />
+        </div>
+        <div>
+          <label for="googleKey" class="block text-sm font-medium text-gray-700">AssemblyAI API Key</label>
+          <input type="password" id="googleKey" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-cyan-500 focus:ring-cyan-500 sm:text-sm p-2" placeholder="AIza..." />
+        </div>
+      </div>
+      <div class="mt-6 flex justify-end space-x-2">
+        <button id="closeModalBtn" class="py-2 px-4 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300">Cancel</button>
+        <button id="saveKeysBtn" class="py-2 px-4 bg-cyan-500 text-white rounded-md hover:bg-cyan-600">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/index.js"></script>
+</body>
+</html>
