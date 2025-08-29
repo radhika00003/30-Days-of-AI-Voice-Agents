@@ -305,7 +305,3 @@ async def websocket_audio_streaming(websocket: WebSocket):
             client.disconnect()
         if websocket.client_state.name != 'DISCONNECTED':
             await websocket.close()
-
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
