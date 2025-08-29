@@ -1,18 +1,17 @@
 import os
 import logging
+from fastapi import FastAPI, WebSocket, WebSocketDisconnect
+from fastapi.staticfiles import StaticFiles
+from pathlib import Path as PathLib
+from fastapi.responses import FileResponse
 import json
 import asyncio
-import base64
-import re
-from datetime import datetime
-from pathlib import Path
-
-from fastapi import FastAPI, Request, WebSocket, WebSocketDisconnect
-from fastapi.staticfiles import StaticFiles
-from fastapi.templating import Jinja2Templates
 from typing import List
-
+import base64
 import websockets
+from datetime import datetime
+import re
+
 import assemblyai as aai
 from assemblyai.streaming.v3 import (
     BeginEvent,
@@ -26,39 +25,18 @@ from assemblyai.streaming.v3 import (
 )
 import google.generativeai as genai
 
-# ---------------------------
-# Logging setup
-# ---------------------------
-logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
-
-# ---------------------------
-# FastAPI app
-# ---------------------------
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 app = FastAPI()
 
-# ---------------------------
-# Paths
-# ---------------------------
-BASE_DIR = Path(__file__).resolve().parent
-TEMPLATES_DIR = BASE_DIR / "templates"
-STATIC_DIR = BASE_DIR / "static"
+BASE_DIR = PathLib(__file__).resolve().parent
 
-# ---------------------------
-# Mount Static + Templates
-# ---------------------------
-app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
-templates = Jinja2Templates(directory=str(TEMPLATES_DIR))
+# Mount static directory (for index.html, JS, CSS, etc.)
+app.mount("/static", StaticFiles(directory=BASE_DIR / "static"), name="static")
 
-# ---------------------------
-# Example route (root page)
-# ---------------------------
+# Serve index.html directly
 @app.get("/")
-async def home(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request})
-
-# ---------------------------
-# Your WebSocket / API code continues below
-# ---------------------------
+async def root():
+    return FileResponse(BASE_DIR / "static/index.html")
 
 # REMOVED: Global Gemini model initialization and dotenv loading
 
@@ -332,6 +310,7 @@ async def websocket_audio_streaming(websocket: WebSocket):
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("MAIN.main:app", host="0.0.0.0", port=8000, reload=True)
+
 
 
 
