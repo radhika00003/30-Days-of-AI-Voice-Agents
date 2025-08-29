@@ -26,6 +26,13 @@ from assemblyai.streaming.v3 import (
 )
 import google.generativeai as genai
 
+
+@app.get("/debug-templates")
+async def debug_templates():
+    files = os.listdir(BASE_DIR / "templates")
+    return {"found_files": files}
+
+
 # Logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 
@@ -309,6 +316,7 @@ async def websocket_audio_streaming(websocket: WebSocket):
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("MAIN.main:app", host="0.0.0.0", port=8000, reload=True)
+
 
 
 
