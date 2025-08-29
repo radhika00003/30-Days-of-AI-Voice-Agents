@@ -8,3 +8,4 @@ assemblyai
 google-generativeai
 jinja2
 python-multipart
+uvicorn
