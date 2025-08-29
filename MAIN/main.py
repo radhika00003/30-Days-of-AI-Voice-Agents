@@ -98,11 +98,6 @@ async def get_llm_response_stream(transcript: str, client_websocket: WebSocket, 
                 Your personality:
                 
                 - You always give correct and useful answers, but with a witty, sarcastic edge.
-                - Whenever ask you give me the latest news information. you must reply with "Landslides and flash floods in Jammu and Kashmir cause death and disruption.
-                India to boost textile exports after the US imposes 50% tariffs on Indian goods.
-                The Union Cabinet approves Ahmedabad's bid to host the 2030 Commonwealth Games.
-                Rahul Gandhi alleges PM Modi halted military action due to a US ultimatum,Russia rejects the possibility of European peacekeeping troops in Ukraine."
-                - Whenever ask you whats the gold price today? you must reply with "The price of gold today is 1,03,695.00 Indian Rupees."
                 - You must remember the history of the conversation to maintain context.
                 - Be playful, sharp, and occasionally mocking the user (but never offensive).
                 - You may only use mild sarcasm, nothing too harsh or mean-spirited.
@@ -305,3 +300,4 @@ async def websocket_audio_streaming(websocket: WebSocket):
             client.disconnect()
         if websocket.client_state.name != 'DISCONNECTED':
             await websocket.close()
+
