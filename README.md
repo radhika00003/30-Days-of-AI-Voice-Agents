@@ -1,100 +1,122 @@
-# 30-Days-of-AI-Voice-Agents
-# 💖 AI Vaani ❤️ 💖
-
-A project crafted with ❤️, transforming your words into a delightful, spoken conversation with AI.
-
-### **Table of Contents**
-
-1.  **💌 A Love Letter to the Project**
-2.  **✨ Features That'll Make You Smile**
-3.  **👩‍💻 The Tech Behind the Magic**
-4.  **🎁 Your Box of Treasures (Folder Structure)**
-5.  **🚀 Let the Adventure Begin\! (How to Run)**
-6.  **🗺️ Your Guide to the Project Files**
-
-
-### **1. 💌 A Love Letter to the Project**
-
-Welcome, friend\! This isn't just a voice agent—it's a passion project, built to feel like a warm, welcoming chat with a digital companion. I poured my heart into making this a seamless, beautiful experience from the first word you speak to the first response you hear. I hope it brings a little bit of magic to your day\! ✨
-
-
-### **2. ✨ Features That'll Make You Smile**
-
-  ***🗣️ Talk, Don't Type\!** : Enjoy a truly hands-free, natural conversation with an AI. It's as easy as speaking your mind\!
-  ***🧠 Your Digital Diary** : Our agent remembers your every word\! Start new chats or revisit old memories with a simple click.
-  ***🤫 The Smartest Listener** : This little bot knows exactly when you start and stop talking, so you don't have to worry about a thing. It just... listens.
-  ***🌈 A Glimpse of the Rainbow** : With a sleek, "glassmorphism" UI, every interaction is a treat for the eyes.
-  ***🎶 A Voice Like a Friend** : The AI's responses are beautifully synthesized, turning text into a comforting, lifelike voice.
-
-
-### **3. 👩‍💻 The Tech Behind the Magic**
-
-This project is a delightful dance between the front-end and back-end, powered by a handful of wonderful technologies:
-
-  * **Frontend**: HTML5, CSS3, and JavaScript, using the **Web Audio API** to capture your voice and the **Web Speech API** for ultra-fast transcription.
-  * **Backend**: A cozy **Python Flask** server that acts as our communication hub.
-  * **AI Services**: The brain, ears, and mouth of our agent\! It's built to connect with a **Speech-to-Text (STT)** service, a **Large Language Model (LLM)**, and a **Text-to-Speech (TTS)** service.
-
-
-### **4. 🎁 Your Box of Treasures (Folder Structure)**
-
-Unwrap the project to find these gems\! 💎
+<div align="center">
 
 ```
-.
-├── 💖 .env                # A secure little box for your secret API keys!
-├── 📜 README.md           # The beautiful story you're reading right now!
-├── 📦 requirements.txt    # A list of all the Python tools we're using.
-├── 🚀 app.py             # The engine of our app, where all the magic happens!
-├── 🖼️ static/             # A folder filled with pretty things for the UI.
-│   └── ✨ image.jpeg       # Our lovely background image!
-└── 📄 templates/          # The cozy home for our web pages.
-    └── 🏠 index.html       # The enchanting world you interact with.
+ __      __   _       _   _   _ ___
+ \ \    / /  /_\     | \ | | (_) __|
+  \ \/\/ /  / _ \    |  \| | | | _|
+   \_/\_/  /_/ \_\   |_|\__| |_|___|
 ```
 
-### **5. 🚀 Let the Adventure Begin\! (How to Run)**
+# Vaani AI: Your Personal Conversational AI Assistant
 
-Ready to fall in love with the AI Voice Agent? Follow these simple steps:
+**A bespoke voice assistant, crafted with Python, that understands, assists, and interacts with the digital world through the power of natural conversation.**
 
-1.  **Clone the Love\!**
-    ```bash
-    git clone <repository_url>
-    cd <repository_directory>
-    ```
-2.  **Set Up the Stage\!**
-    ```bash
-    # Create the virtual environment
-    python -m venv venv
+</div>
 
-    # Activate it (on macOS/Linux)
-    source venv/bin/activate
+<p align="center">
+  <img src="https://img.shields.io/badge/Challenge-30_Days_of_AI-blueviolet" alt="Challenge Badge">
+  <img src="https://img.shields.io/badge/Python-3.9+-blue?logo=python" alt="Python Version">
+  <img src="https://img.shields.io/badge/License-MIT-green" alt="License">
+  <img src="https://img.shields.io/badge/code%20style-black-000000.svg" alt="Code Style: Black">
+</p>
 
-    # Or on Windows
-    venv\Scripts\activate
-    ```
-    Install all the goodies\!
-    ```bash
-    pip install -r requirements.txt
-    ```
-3.  **Whisper the Secrets\!**
-    Create a **`.env`** file and give it your API keys, like a special secret\!
-    ```
-    # Your sweet secrets! 🤫
-    LLM_API_KEY=your_llm_api_key_here
-    STT_API_KEY=your_stt_api_key_here
-    TTS_API_KEY=your_tts_api_key_here
-    ```
-4.  **Bring it to Life\!**
-    ```bash
-    flask run
-    ```
-    Now, open your favorite browser and visit **`http://127.0.0.1:5000`** to meet your new AI friend\!
+---
 
+> Vaani AI is more than just code; it's a step towards a future where technology adapts to us. Born from the "30 Days of AI Voice Agents" challenge, Vaani can manage my schedule, provide real-time information from the web, and serve as a seamless bridge between me and my digital life.
 
-### **6. 🗺️ Your Guide to the Project Files**
+### 🎬 Vaani AI in Action
 
-  * **`app.py`**: Our **Flask server**, the friendly host that connects your voice to the AI and back.
-  * **`static/`**: Where we keep all our pretty pictures, like the background image.
-  * **`templates/`**: The home of **`index.html`**, the main stage for our AI adventure, filled with all the HTML, CSS, and JavaScript.
-  * **`.env`**: The guardian of our API keys, keeping our secrets safe and sound.
-  * **`requirements.txt`**: A list of all the special tools our Python server needs to make the magic happen\!
+*(A high-quality GIF here is essential. It's the first thing people will see and it will immediately demonstrate Vaani's capabilities.)*
+
+![Demo of Vaani AI managing a calendar and checking the weather](https://your-image-host.com/vaani-premium-demo.gif)
+
+---
+
+### 🚀 The 29-Day Journey: From Silence to Symphony
+
+This project is a testament to rapid, iterative development. Here’s how Vaani AI came to life, week by week.
+
+<details>
+<summary><strong>Click to Unfold the Development Chronicle</strong></summary>
+
+* **🌱 Week 1 (Days 1-7): The Spark of Life.** The initial focus was on the fundamentals: giving Vaani a voice and ears. We established the core audio pipeline, capturing microphone input and generating speech. The week culminated in a magical moment: the first successful, end-to-end conversation where Vaani listened to a sentence and spoke a response.
+
+* **🧠 Week 2 (Days 8-15): The Dawn of Intelligence.** This week, we gave Vaani a mind. By integrating a state-of-the-art Large Language Model (LLM), Vaani transitioned from a simple script to a thinking entity. We meticulously crafted its system prompt to define its personality—helpful, concise, and professional—and implemented conversational memory to maintain context.
+
+* **👂 Week 3 (Days 16-22): Achieving Awareness.** To make Vaani a true assistant, it needed to be present but unobtrusive. We integrated a low-resource wake word engine ("Hey, Vaani"), allowing it to listen passively. This week was a deep dive into optimization, relentlessly tuning the system to minimize latency for fluid, real-time interactions.
+
+* **🛠️ Week 4 (Days 23-29): Granting Superpowers.** The final and most transformative week. We unlocked Vaani's ability to act in the real world through **Function Calling**. This powerful technique allows the LLM to request the execution of custom Python code, enabling Vaani to connect to external APIs and perform meaningful tasks. This is where Vaani learned to check the weather in Indore, manage my Google Calendar, and more.
+
+</details>
+
+### ✨ Core Capabilities
+
+* **🗣️ Fluid Conversation:** Employs cutting-edge STT and TTS engines for interactions that feel natural and immediate.
+* **🧠 Context-Aware Intelligence:** Leverages a powerful LLM to understand nuances, recall previous parts of the conversation, and provide insightful responses.
+* **👂 Always-On Wake Word:** Stays dormant until called with "Hey, Vaani," ensuring privacy and responsiveness.
+* **🎭 Customizable Persona:** Vaani's personality can be easily sculpted via the main system prompt, from a formal assistant to a witty companion.
+
+### 🔧 Advanced Integrations (The "Superpowers")
+
+Vaani uses a "toolbelt" of functions to interact with the outside world:
+
+* **🌦️ Real-Time Meteorologist:** Connects to live weather APIs.
+    * *Example: "Hey Vaani, will I need an umbrella for my evening walk in Indore?"*
+* **📅 Proactive Calendar Assistant:** Integrates directly with Google Calendar API.
+    * *Example: "Hey Vaani, add 'Project discussion with the team' to my calendar for tomorrow at 4 PM."*
+* **💡 Smart Home Conductor (Optional):** Designed to be extensible for APIs like Philips Hue or Home Assistant.
+    * *Example: "Hey Vaani, dim the study lights to 50%."*
+
+---
+
+### 💻 The Technology Stack
+
+Vaani is built on a foundation of powerful and modern technologies.
+
+| Category      | Technology                                    | Purpose                                                 |
+| :------------ | :-------------------------------------------- | :------------------------------------------------------ |
+| **Core Logic**| Python 3.9+                                   | The backbone of the entire application.                 |
+| **The Brain** | OpenAI GPT-4o / Google Gemini API               | For advanced understanding, reasoning, and tool use.    |
+| **Voice I/O** | OpenAI Whisper (STT) & ElevenLabs (TTS)       | For best-in-class speech recognition and lifelike voice.|
+| **Awareness** | Picovoice Porcupine                           | For highly accurate, on-device wake word detection.     |
+| **Tooling** | PyAudio, python-dotenv, google-api-python-client | For audio handling, config management, and API access.|
+
+---
+
+### ⚡ Getting Started
+
+Ready to bring Vaani AI to life on your own machine?
+
+#### **1. Clone the Repository**
+```bash
+git clone [https://github.com/your-username/vaani-ai.git](https://github.com/your-username/vaani-ai.git)
+cd vaani-ai
+```
+
+#### **2. Set Up the Environment**
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+#### **3. Configure Your Secrets**
+Create a `.env` file in the root directory and populate it with your API keys, using `.env.example` as a template.
+```ini
+# .env - Your secret keys
+OPENAI_API_KEY="sk-..."
+ELEVENLABS_API_KEY="..."
+PICOVOICE_ACCESS_KEY="..."
+GOOGLE_CREDENTIALS_PATH="credentials.json"
+```
+
+#### **4. Run Vaani AI**
+```bash
+python main.py
+```
+Wait for the "Listening..." prompt, say "Hey, Vaani," and start your conversation!
+
+---
+<div align="center">
+Made with ❤️ in Indore, India.
+</div>
