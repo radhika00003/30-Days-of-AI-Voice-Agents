@@ -1,10 +1,12 @@
 <div align="center">
 
-```text
+```
+
 __      __    _        _      _   _   _ 
 \ \    / /   /_\      /_\    | \ | | (_)
  \ \  / /   / _ \    / _ \   |  \| | | |
   \_/\_/   /_/ \_\  /_/ \_\  |_|\__| |_|
+```
 
 # Vaani AI: Your Personal Conversational AI Assistant
 
@@ -15,7 +17,6 @@ __      __    _        _      _   _   _
 <p align="center">
   <img src="https://img.shields.io/badge/Challenge-30_Days_of_AI-blueviolet" alt="Challenge Badge">
   <img src="https://img.shields.io/badge/Python-3.9+-blue?logo=python" alt="Python Version">
-  <img src="https://img.shields.io/badge/License-MIT-green" alt="License">
   <img src="https://img.shields.io/badge/code%20style-black-000000.svg" alt="Code Style: Black">
 </p>
 
@@ -25,9 +26,7 @@ __      __    _        _      _   _   _
 
 ### 🎬 Vaani AI in Action
 
-*(A high-quality GIF here is essential. It's the first thing people will see and it will immediately demonstrate Vaani's capabilities.)*
-
-![Demo of Vaani AI managing a calendar and checking the weather](https://your-image-host.com/vaani-premium-demo.gif)
+![Demo of Vaani AI talking to me sarcastically](https://jumpshare.com/s/picaJ3xIgPuU2Q5ezlmn)
 
 ---
 
