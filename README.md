@@ -1,11 +1,10 @@
 <div align="center">
 
-```
-__      __    _        _      _   _   _     
+```text
+__      __    _        _      _   _   _ 
 \ \    / /   /_\      /_\    | \ | | (_)
  \ \  / /   / _ \    / _ \   |  \| | | |
   \_/\_/   /_/ \_\  /_/ \_\  |_|\__| |_|
-```
 
 # Vaani AI: Your Personal Conversational AI Assistant
 
