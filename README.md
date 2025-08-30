@@ -25,7 +25,7 @@ __      __    _        _      _   _   _
 
 ### 🎬 Vaani AI in Action
 
-![Demo of Vaani AI talking to me sarcastically](https://jumpshare.com/s/picaJ3xIgPuU2Q5ezlmn)
+![Demo of Vaani AI talking to me sarcastically](https://drive.google.com/file/d/1_fn-BRRXs2LLTjASlabphP7yTu89BxzX/view?usp=sharing)
 
 ---
 
