@@ -61,8 +61,7 @@ Vaani uses a "toolbelt" of functions to interact with the outside world:
     * *Example: "Hey Vaani, will I need an umbrella for my evening walk in Indore?"*
 * **📅 Proactive Calendar Assistant:** Integrates directly with Google Calendar API.
     * *Example: "Hey Vaani, add 'Project discussion with the team' to my calendar for tomorrow at 4 PM."*
-* **💡 Smart Home Conductor (Optional):** Designed to be extensible for APIs like Philips Hue or Home Assistant.
-    * *Example: "Hey Vaani, dim the study lights to 50%."*
+
 
 ---
 
